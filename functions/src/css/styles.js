@@ -47,7 +47,6 @@ module.exports = { style: '@import "https://fonts.googleapis.com/css?family=Popp
     '    background: #7386D5;' +
     '    color: #fff;' +
     '    transition: all 0.3s;' +
-    '    overflow-y: scroll;' +
     '    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);' +
     '}' +
     '#sidebar.active {' +
@@ -112,7 +111,6 @@ module.exports = { style: '@import "https://fonts.googleapis.com/css?family=Popp
     '    display: block;' +
     '    position: absolute;' +
     '    right: 20px;' +
-    '    font-family: \'Glyphicons Halflings\';' +
     '    font-size: 0.6em;' +
     '}' +
     'a[aria-expanded="true"]::before {' +
@@ -140,6 +138,14 @@ module.exports = { style: '@import "https://fonts.googleapis.com/css?family=Popp
     'a.article, a.article:hover {' +
     '    background: #6d7fcc !important;' +
     '    color: #fff !important;' +
+    '}' +
+    '.btn-circle.btn-xl {' +
+    '    width: 70px;' +
+    '    height: 70px;' +
+    '    padding: 10px 16px;' +
+    '    border-radius: 35px;' +
+    '    font-size: 24px;' +
+    '    line-height: 1.33;' +
     '}' +
     '/* ---------------------------------------------------' +
     '    CONTENT STYLE' +
