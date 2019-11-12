@@ -15,7 +15,7 @@ $(()=>{
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('../js/sw.js', {
-        scope: '.' // <--- THIS BIT IS REQUIRED
+        scope: '/si-pet/' // <--- THIS BIT IS REQUIRED
     }).then(function(registration) {
         // Registration was successful
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
