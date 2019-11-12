@@ -35,43 +35,43 @@
                     </button>
                 </div>
                 <ul id="sidenav-list">
-                    <li class="active">
+                    <li class="{active-home}">
                         <a href="./home">
                             <i class="fa fa-camera"></i>
                             Câmera
                         </a>
                     </li>
-                    <li>
+                    <li class="{active-alimentacao}">
                         <a href="./alimentacao">
                             <i class="fa fa-drumstick-bite"></i>
                             Alimentação
                         </a>
                     </li>
-                    <li>
+                    <li class="{active-galeria}">
                         <a href="./galeria">
                             <i class="fa fa-photo-video"></i>
                             Galeria
                         </a>
                     </li>
-                    <li>
+                    <li class="{active-ambiente}">
                         <a href="./ambiente">
                             <i class="fa fa-home"></i>
                             Ambiente
                         </a>
                     </li>
-                    <li>
+                    <li class="{active-historico}">
                         <a href="./historico">
                             <i class="fa fa-clock"></i>
                             Histórico
                         </a>
                     </li>
-                    <li>
+                    <li class="{active-pets}">
                         <a href="./pets">
                             <i class="fa fa-paw"></i>
                             Pets
                         </a>
                     </li>
-                    <li>
+                    <li class="{active-configuracoes}">
                         <a href="./configuracoes">
                             <i class="fa fa-cog"></i>
                             Configurações
