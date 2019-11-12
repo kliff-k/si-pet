@@ -6,6 +6,11 @@ self.addEventListener('install', function (event) {
             return cache.addAll([
                 '/si-pet/app/home',
                 '/si-pet/app/alimentacao',
+                '/si-pet/app/ambiente',
+                '/si-pet/app/configuracao',
+                '/si-pet/app/galeria',
+                '/si-pet/app/historico',
+                '/si-pet/app/pets',
             ]);
         })
     )
