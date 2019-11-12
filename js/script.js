@@ -14,7 +14,7 @@ $(()=>{
 });
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('../js/sw.js', {
+    navigator.serviceWorker.register('../sw.js', {
         scope: '/si-pet/' // <--- THIS BIT IS REQUIRED
     }).then(function(registration) {
         // Registration was successful
