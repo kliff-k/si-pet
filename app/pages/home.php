@@ -1,6 +1,6 @@
 <div style="display:flex;justify-content:center;align-items:center;">
   <div>
-   <img src="https://i.imgur.com/5LLNa9x.jpg"><br>
+   <img src="../img/camera_mock.jpg"><br>
   </div>
 </div>
 <div style="display:flex;justify-content:center;align-items:center;">
