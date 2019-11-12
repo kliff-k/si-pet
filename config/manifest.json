@@ -7,7 +7,7 @@
   "start_url": "/si-pet/app/home",
   "icons": [
     {
-      "src": "images/icon-72x72.png",
+      "src": "../icons/paw.png",
       "sizes": "72x72",
       "type": "image/png"
     }

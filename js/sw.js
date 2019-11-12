@@ -4,6 +4,7 @@ self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function (cache) {
             return cache.addAll([
+                '/si-pet/',
                 '/si-pet/app/',
                 '/si-pet/app/home',
                 '/si-pet/app/alimentacao',
