@@ -7,7 +7,7 @@ if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
     exit;
 }
 
-$page = $_GET['page'];
+$page = $_GET['page']?$_GET['page']:'home';
 
 $body   = file_get_contents("./pages/$page.php");
 $main   = file_get_contents("./pages/main.php");

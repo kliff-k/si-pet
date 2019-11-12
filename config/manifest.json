@@ -4,7 +4,7 @@
   "theme_color": "#2a0044",
   "background_color": "#2a0044",
   "display": "standalone",
-  "start_url": "/home",
+  "start_url": "/si-pet/app/home",
   "icons": [
     {
       "src": "images/icon-72x72.png",
