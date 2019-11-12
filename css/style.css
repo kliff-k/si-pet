@@ -172,3 +172,9 @@ button {
         display: none !important;
     }
 }
+
+/*Content*/
+main {
+    display: flex;
+    margin-top: var(--navbar-height);
+}
