@@ -13,6 +13,18 @@ $(()=>{
     });
 });
 
+function feed (){
+    alert('teste');
+    $.ajax({
+        url: "../rest/api/alimentacao/add",
+        method: "POST",
+        data: { id : 'blah' },
+        dataType: "html"
+    }).done(function( msg ) {
+        alert( "Data Saved: " + msg );
+    });
+}
+
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('../sw.js', {
         scope: '/si-pet/' // <--- THIS BIT IS REQUIRED

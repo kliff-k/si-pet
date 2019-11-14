@@ -1,0 +1,5 @@
+Options +FollowSymlinks
+RewriteEngine On
+RewriteBase /si-pet/app/
+
+RewriteRule /si-pet/app/(.*)$ /si-pet/app/index.php?page=$1
