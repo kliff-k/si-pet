@@ -1,9 +1,5 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 class API
 {
     /**
@@ -158,7 +154,11 @@ class API
                         switch ($this->method)
                         {
                             case 'POST':
-                                $return = file_put_contents('../../data/log.json','teste',FILE_APPEND);
+                                $file = json_decode(file_get_contents('../../data/log.json'), TRUE);
+                                $file['alimentacao']['horario'][] = date('d/m/Y');
+                                file_put_contents('../../data/log.json', json_encode($file));
+
+                                $return = ['Dados gravados'];
                                 break;
                         }
                         break;
@@ -171,7 +171,7 @@ class API
                         switch ($this->method)
                         {
                             case 'POST':
-                                $return = file_put_contents('../../data/photos.json','teste',FILE_APPEND);
+                                $return = file_put_contents('../../data/photos.json','teste');
                                 break;
                         }
                         break;
@@ -184,7 +184,7 @@ class API
                         switch ($this->method)
                         {
                             case 'POST':
-                                $return = file_put_contents('../../data/pet.json','teste',FILE_APPEND);
+                                $return = file_put_contents('../../data/pet.json','teste');
                                 break;
                         }
                         break;

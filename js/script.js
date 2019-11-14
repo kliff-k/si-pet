@@ -14,14 +14,13 @@ $(()=>{
 });
 
 function feed (){
-    alert('teste');
     $.ajax({
         url: "../rest/api/alimentacao/add",
         method: "POST",
         data: { id : 'blah' },
         dataType: "html"
     }).done(function( msg ) {
-        alert( "Data Saved: " + msg );
+        alert( msg );
     });
 }
 
