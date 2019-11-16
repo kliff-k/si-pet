@@ -23,7 +23,8 @@ $(()=>{
         $.ajax({
             url: "../rest/api/login",
             method: "POST",
-            data: {id: id}
+            data: '{"id": "'+id+'"}',
+            dataType: "json"
         }).done(function( msg ) {
             window.location.reload();
         });
