@@ -1,7 +1,7 @@
 <div style="margin-top:30px;">
     <div class="center-content">
         <div>
-            <img src="../img/camera_mock.jpg" style="max-width: 100vw;"><br>
+            <img src="../img/camera_mock.jpg" alt="Your cute pet" style="max-width: 100vw;"><br>
         </div>
     </div>
     <div class="center-content">
