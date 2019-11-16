@@ -4,7 +4,14 @@ self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function (cache) {
             return cache.addAll([
+                '/si-pet/app/login',
                 '/si-pet/app/home',
+                '/si-pet/app/alimentacao',
+                '/si-pet/app/ambiente',
+                '/si-pet/app/configuracao',
+                '/si-pet/app/galeria',
+                '/si-pet/app/historico',
+                '/si-pet/app/pets',
             ]);
         })
     )

@@ -26,7 +26,7 @@ $(()=>{
             data: '{"id": "'+id+'"}',
             dataType: "json"
         }).done(function( msg ) {
-            window.location.reload();
+            window.location.href = './home';
         });
     });
 
