@@ -112,6 +112,9 @@ class API
      */
     public function __construct ()
     {
+        // Inicia a sessão
+        session_start();
+
         // Captura todas as variáveis necessárias.
         $this->method   = $_SERVER['REQUEST_METHOD'];
         $this->date     = $_SERVER["HTTP_DATE"];
@@ -147,54 +150,156 @@ class API
         // Endpoints
         switch ($this->path[1])
         {
+            case 'login':
+                if(!$this->data['id'])
+                    break;
+
+                switch ($this->method)
+                {
+                    case 'POST':
+                        $_SESSION['si-pet-id'] = $this->data['id'];
+
+                        $return = ['sucesso'];
+                        break;
+                }
+                break;
+            case 'logout':
+                switch ($this->method)
+                {
+                    case 'DELETE':
+                        session_destroy();
+
+                        $return = ['sucesso'];
+                        break;
+                }
+                break;
+            case 'history':
+                switch ($this->method)
+                {
+                    case 'GET':
+                        $return = json_encode(json_decode(file_get_contents('../../data/log.json'), TRUE)[$_SESSION['si-pet-id']]);
+                        break;
+                }
+                break;
             case 'alimentacao':
                 switch ($this->path[2])
                 {
-                    case 'add':
+                    case 'deploy':
                         switch ($this->method)
                         {
                             case 'POST':
+
+                                $file = json_decode(file_get_contents('../../external/food.json'), TRUE);
+
+                                if($file[$_SESSION['si-pet-id']]['reservoir'] < 20)
+                                {
+                                    $return = ['Reservatório vazio'];
+                                    break;
+                                }
+
+                                $file[$_SESSION['si-pet-id']]['plate'] = $file[$_SESSION['si-pet-id']]['plate'] + 20;
+                                $file[$_SESSION['si-pet-id']]['reservoir'] = $file[$_SESSION['si-pet-id']]['reservoir'] - 20;
+                                file_put_contents('../../external/food.json', json_encode($file));
+
                                 $file = json_decode(file_get_contents('../../data/log.json'), TRUE);
-                                $file['alimentacao']['horario'][] = date('d/m/Y');
+                                $file[$_SESSION['si-pet-id']]['alimentacao'][] = ['tipo' => 'manual', 'horario' => date('d/m/Y')];
                                 file_put_contents('../../data/log.json', json_encode($file));
 
-                                $return = ['Dados gravados'];
+                                $return = ['Porção de alimento liberada'];
+                                break;
+                        }
+                        break;
+                    case 'schedule':
+                        switch ($this->method)
+                        {
+                            case 'POST':
+                                $file = json_decode(file_get_contents('../../data/schedule.json'), TRUE);
+                                $file[$_SESSION['si-pet-id']]['schedule'][] = ['quantidade' => $this->data['quantidade'], 'horario' => $this->data['horario']];
+                                file_put_contents('../../data/schedule.json', json_encode($file));
+
+                                $return = ['sucesso'];
+                                break;
+                            case 'GET':
+                                $return = json_encode(json_decode(file_get_contents('../../data/schedule.json'), TRUE)[$_SESSION['si-pet-id']]);
                                 break;
                         }
                         break;
                 }
                 break;
             case 'photo':
-                switch ($this->path[2])
+                switch ($this->method)
                 {
-                    case 'add':
-                        switch ($this->method)
-                        {
-                            case 'POST':
-                                $file = json_decode(file_get_contents('../../data/photos.json'), TRUE);
-                                $file['photos']['horario'][] = date('d/m/Y');
-                                file_put_contents('../../data/photos.json', json_encode($file));
+                    case 'GET':
+                        $return = json_encode(json_decode(file_get_contents('../../data/photos.json'), TRUE)[$_SESSION['si-pet-id']][$this->path[2]]);
+                        break;
+                    case 'POST':
+                        $file = json_decode(file_get_contents('../../data/photos.json'), TRUE);
+                        $file[$_SESSION['si-pet-id']][] = ['id' => rand(), 'horario' => date('d/m/Y')];
+                        file_put_contents('../../data/photos.json', json_encode($file));
 
-                                $return = ['Dados gravados'];
-                                break;
-                        }
+                        $return = ['Foto adicionada à galeria'];
+                        break;
+                    case 'DELETE':
+                        $file = json_decode(file_get_contents('../../data/photos.json'), TRUE);
+                        foreach (json_decode($this->data['photos'], TRUE) AS $chave)
+                            unset($file[$_SESSION['si-pet-id']][$chave]);
+                        file_put_contents('../../data/photos.json', json_encode($file));
+
+                        $return = ['sucesso'];
+                        break;
+                }
+                break;
+            case 'gallery':
+                switch ($this->method)
+                {
+                    case 'GET':
+                        $return = json_encode(json_decode(file_get_contents('../../data/photos.json'), TRUE)[$_SESSION['si-pet-id']]);
                         break;
                 }
                 break;
             case 'pet':
-                switch ($this->path[2])
+                switch ($this->method)
                 {
-                    case 'add':
-                        switch ($this->method)
-                        {
-                            case 'POST':
-                                $file = json_decode(file_get_contents('../../data/pets.json'), TRUE);
-                                $file['pet']['nome'][] = $this->data['nome'];
-                                file_put_contents('../../data/pets.json', json_encode($file));
+                    case 'GET':
+                        $return = json_encode(json_decode(file_get_contents('../../data/pet.json'), TRUE)[$_SESSION['si-pet-id']]);
+                        break;
+                    case 'POST':
+                        $file = json_decode(file_get_contents('../../data/pet.json'), TRUE);
+                        $file[$_SESSION['si-pet-id']][] = ['id' => rand(), 'nome' => $this->data['nome'], 'especie' => $this->data['especie'], 'peso' => $this->data['peso']];
+                        file_put_contents('../../data/pet.json', json_encode($file));
 
-                                $return = ['Dados gravados'];
-                                break;
-                        }
+                        $return = ['sucesso'];
+                        break;
+                    case 'DELETE':
+                        $file = json_decode(file_get_contents('../../data/pet.json'), TRUE);
+                        unset($file[$_SESSION['si-pet-id']][$this->data['pet']]);
+                        file_put_contents('../../data/pet.json', json_encode($file));
+
+                        $return = ['sucesso'];
+                        break;
+                }
+                break;
+            case 'food':
+                switch ($this->method)
+                {
+                    case 'GET':
+                        $return = json_encode(json_decode(file_get_contents('../../external/food.json'), TRUE)[$_SESSION['si-pet-id']]);
+                        break;
+                }
+                break;
+            case 'environment':
+                switch ($this->method)
+                {
+                    case 'GET':
+                        $return = json_encode(json_decode(file_get_contents('../../external/environment.json'), TRUE)[$_SESSION['si-pet-id']]);
+                        break;
+                }
+                break;
+            case 'door':
+                switch ($this->method)
+                {
+                    case 'GET':
+                        $return = json_encode(json_decode(file_get_contents('../../external/door.json'), TRUE)[$_SESSION['si-pet-id']]);
                         break;
                 }
                 break;

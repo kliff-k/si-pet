@@ -1,4 +1,4 @@
-<div style="margin-top:30px;">
+<div>
     <div class="center-content">
         <div>
             <img src="../img/camera_mock.jpg" alt="Your cute pet" style="max-width: 100vw;"><br>

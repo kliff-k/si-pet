@@ -12,12 +12,27 @@ $(()=>{
         $('#sidenav-overlay').addClass('active');
     });
 
+    $('#activate-id').on('click', () => {
+        const id = $('#si-pet-id').val();
+        if(!id)
+        {
+            alert('É necessário informar um id');
+            return 0;
+        }
+
+        $.ajax({
+            url: "../rest/api/login",
+            method: "POST",
+            data: {id: id}
+        }).done(function( msg ) {
+            window.location.reload();
+        });
+    });
+
     $('#feed-button').on('click', () => {
         $.ajax({
-            url: "../rest/api/alimentacao/add",
-            method: "POST",
-            data: { id : 'blah' },
-            dataType: "html"
+            url: "../rest/api/alimentacao/deploy",
+            method: "POST"
         }).done(function( msg ) {
             alert( msg );
         });
@@ -25,10 +40,8 @@ $(()=>{
 
     $('#picture-button').on('click', () => {
         $.ajax({
-            url: "../rest/api/photo/add",
-            method: "POST",
-            data: { id : 'blah' },
-            dataType: "html"
+            url: "../rest/api/photo",
+            method: "POST"
         }).done(function( msg ) {
             alert( msg );
         });
@@ -44,3 +57,16 @@ if ('serviceWorker' in navigator) {
         console.log('ServiceWorker registration failed: ', err);
     });
 }
+
+const btn = document.querySelector('#share-button');
+btn.addEventListener('click', () => {
+        navigator.share({
+            title: 'Pet Picture',
+            text: 'Compartilhe as fotos dos seus animais',
+            url: 'https://singlehorizon.com/si-pet/app/home',
+        })
+        .then(() =>
+            resultPara.textContent = 'MDN shared successfully'
+        )
+        .catch((error) => console.log('Error sharing', error));
+});
