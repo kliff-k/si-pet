@@ -171,7 +171,11 @@ class API
                         switch ($this->method)
                         {
                             case 'POST':
-                                $return = file_put_contents('../../data/photos.json','teste');
+                                $file = json_decode(file_get_contents('../../data/photos.json'), TRUE);
+                                $file['photos']['horario'][] = date('d/m/Y');
+                                file_put_contents('../../data/photos.json', json_encode($file));
+
+                                $return = ['Dados gravados'];
                                 break;
                         }
                         break;
@@ -184,7 +188,11 @@ class API
                         switch ($this->method)
                         {
                             case 'POST':
-                                $return = file_put_contents('../../data/pet.json','teste');
+                                $file = json_decode(file_get_contents('../../data/pets.json'), TRUE);
+                                $file['pet']['nome'][] = $this->data['nome'];
+                                file_put_contents('../../data/pets.json', json_encode($file));
+
+                                $return = ['Dados gravados'];
                                 break;
                         }
                         break;

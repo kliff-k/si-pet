@@ -11,27 +11,36 @@ $(()=>{
         $('#sidenav').addClass('active');
         $('#sidenav-overlay').addClass('active');
     });
-});
 
-function feed (){
-    $.ajax({
-        url: "../rest/api/alimentacao/add",
-        method: "POST",
-        data: { id : 'blah' },
-        dataType: "html"
-    }).done(function( msg ) {
-        alert( msg );
+    $('#feed-button').on('click', () => {
+        $.ajax({
+            url: "../rest/api/alimentacao/add",
+            method: "POST",
+            data: { id : 'blah' },
+            dataType: "html"
+        }).done(function( msg ) {
+            alert( msg );
+        });
     });
-}
+
+    $('#picture-button').on('click', () => {
+        $.ajax({
+            url: "../rest/api/photo/add",
+            method: "POST",
+            data: { id : 'blah' },
+            dataType: "html"
+        }).done(function( msg ) {
+            alert( msg );
+        });
+    });
+});
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('../sw.js', {
-        scope: '/si-pet/' // <--- THIS BIT IS REQUIRED
+        scope: '/si-pet/'
     }).then(function(registration) {
-        // Registration was successful
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }, function(err) {
-        // registration failed :(
         console.log('ServiceWorker registration failed: ', err);
     });
 }
