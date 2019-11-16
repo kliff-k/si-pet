@@ -7,8 +7,8 @@ if(!$_SESSION['si-pet-id'])
 else
     $page = $_GET['page']?$_GET['page']:'home';
 
-$body   = file_get_contents("../pages/$page.php");
-$main   = file_get_contents("../pages/main.php");
+$body   = file_get_contents("../pages/$page.html");
+$main   = file_get_contents("../pages/main.html");
 $main   = str_replace("{active-$page}", 'active', $main);
 $main   = str_replace("{body}", $body, $main);
 
