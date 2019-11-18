@@ -55,6 +55,7 @@ button {
     height: 100vh;
     z-index: 1032;
     background-color: var(--bg-color);
+    overflow: auto;
     transition: all var(--sidenav-transition) ease-out;
 }
 #sidenav.active{
@@ -204,10 +205,14 @@ main {
     display: flex;
     margin-top: var(--navbar-height);
 }
+
 #content {
     width: 100%;
+    min-height: calc(100vh - var(--navbar-height));
     padding: 20px;
+    overflow: auto;
 }
+
 .center-content {
     display:flex;
     justify-content:center;
