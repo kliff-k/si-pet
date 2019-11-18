@@ -1,7 +1,8 @@
-<button type="button" class="btn btn-primary" id="share-button">Compartilhar</button>
-<button type="button" class="btn btn-danger" id="remover-button">Remover</button>
-<br><br>
 <div class="gallery" id="gallery"></div>
+<div class="gallery-options">
+    <button type="button" class="btn btn-primary" id="share-button"><i class="fa fa-share-alt mr-2"></i>Compartilhar</button>
+    <button type="button" class="btn btn-danger" id="remover-button"><i class="fa fa-trash-alt mr-2"></i>Remover</button>
+</div>
 <script>
 $(()=>{
     $.ajax({
@@ -10,11 +11,14 @@ $(()=>{
     }).done(function( msg ) {
         $("#gallery").html(msg);
     });
+
     $('#remover-button').on('click', function(){
         let array = [];
         $(".gallery-thumb").each((index, element) => {
-            if($(element).hasClass("selected"))
-                array.push('"'+$(element).data('value')+'"');
+            let $element = $(element);
+
+            if($element.hasClass("selected"))
+                array.push('"'+$element.data('value')+'"');
         });
         const ids = array.join(',');
 
@@ -28,6 +32,7 @@ $(()=>{
             window.location.reload();
         });
     });
+
     $('#share-button').on('click', function(){
         navigator.share({
             title: 'Pet Picture',
@@ -38,10 +43,13 @@ $(()=>{
         ).catch((error) => console.log('Error sharing', error));
     });
 });
+
 function toggleSelected(id){
-    if($('#gallery-thumb-'+id).hasClass("selected"))
-        $('#gallery-thumb-'+id).removeClass("selected");
+    let $thumb = $('#gallery-thumb-'+id);
+
+    if($thumb.hasClass("selected"))
+        $thumb.removeClass("selected");
     else
-        $('#gallery-thumb-'+id).addClass("selected");
+        $thumb.addClass("selected");
 }
 </script>
