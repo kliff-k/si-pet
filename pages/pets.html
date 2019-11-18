@@ -1,4 +1,9 @@
-<div class="card-deck">
+<div class="text-center" style="border-top: 2px solid black; border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 15px;">
+    <div>
+        <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#modal-pet">Adicionar Pet <i class="fa fa-plus"></i></button>
+    </div>
+</div>
+<div class="card-deck" id="pet-gallery">
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="../img/gato_atento.jpg" alt="^._.^">
         <div class="card-body">
@@ -6,6 +11,7 @@
             <p class="card-text">6 anos, formado em física pela Caltech, com mestrado em Cornell e doutorado
                 no MIT. Sua linha de pesquisa tenta desprovar as teorias de Schrodinger.</p>
             <a href="#" class="btn btn-primary">Editar</a>
+            <a href="#" class="btn btn-danger">Remover</a>
         </div>
     </div>
     <div class="card" style="width: 18rem;">
@@ -14,6 +20,89 @@
             <h5 class="card-title">Derp Herpington</h5>
             <p class="card-text">Um filhotinho adorável (๑✪ᆺ✪๑)</p>
             <a href="#" class="btn btn-primary">Editar</a>
+            <a href="#" class="btn btn-danger">Remover</a>
         </div>
     </div>
 </div>
+<div id="modal-pet" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="AdicionarPet">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <div class="col-sm-6"><label>Nome: </label></div><div class="col-sm-6"><input type="text" id="nome"></div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-6"><label>Descrição: </label></div><div class="col-sm-6"><input type="text" id="descricao"></div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-6"><label>Espécie: </label></div><div class="col-sm-6"><input type="text" id="especie"></div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-6"><label>Peso: </label></div><div class="col-sm-6"><input type="number" id="peso"></div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-6"><label>Foto: </label></div><div class="col-sm-6"><input type="file" id="foto"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="pet-add-button">Adicionar pet</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(()=>{
+        $.ajax({
+            url: "../rest/api/pet",
+            method: "GET"
+        }).done(function( msg ) {
+            $("#pet-gallery").html(msg);
+        });
+        $('#pet-add-button').on('click', () => {
+            const nome = $("#nome").val();
+            const descricao = $("#descricao").val();
+            const especie = $("#especie").val();
+            const peso = $("#peso").val();
+            const foto = $("#foto").val();
+            $.ajax({
+                url: "../rest/api/pet",
+                method: "POST",
+                data: '{"nome": "'+nome+'", "descricao": "'+descricao+'", "especie": "'+especie+'", "peso": "'+peso+'", "foto": "'+foto+'"}',
+                dataType: "json"
+            }).done(function( msg ) {
+                alert( msg );
+                window.location.reload();
+            });
+        });
+    });
+    function editarPet (id) {
+        const nome = $("#nome").val();
+        const descricao = $("#descricao").val();
+        const especie = $("#especie").val();
+        const peso = $("#peso").val();
+        const foto = $("#foto").val();
+        $.ajax({
+            url: "../rest/api/pet",
+            method: "PATCH",
+            data: '{"id": "+'+id+'", "nome": "'+nome+'", "descricao": "'+descricao+'", "especie": "'+especie+'", "peso": "'+peso+'", "foto": "'+foto+'"}',
+            dataType: "json"
+        }).done(function( msg ) {
+            alert(msg);
+            window.location.reload();
+        });
+    }
+    function removerPet (id) {
+        $.ajax({
+            url: "../rest/api/pet",
+            method: "DELETE",
+            data: '{"id": "'+id+'"}',
+            dataType: "json"
+        }).done(function( msg ) {
+            alert( msg );
+            window.location.reload();
+        });
+    }
+</script>

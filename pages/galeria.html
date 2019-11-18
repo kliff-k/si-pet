@@ -3,15 +3,23 @@
 
   </div>
 </div>
+<button type="button" class="btn btn-primary" id="share-button">Teste</button>
 <script>
 $(()=>{
     $.ajax({
         url: "../rest/api/gallery",
         method: "GET"
     }).done(function( msg ) {
-        const food = $.parseJSON(msg);
-        $("#quant-reserv-pri").html(food.reservatorio ? food.reservatorio+"g" : "Vazio");
-        $("#quant-tigela").html(food.tigela ? food.tigela+"g" : "Vazia");
+        $("#gallery").html(msg);
+    });
+    $('#share-button').on('click', function(){
+        navigator.share({
+            title: 'Pet Picture',
+            text: 'Compartilhe as fotos dos seus animais',
+            url: 'https://singlehorizon.com/si-pet/app/home',
+        }).then(() =>
+            resultPara.textContent = 'MDN shared successfully'
+        ).catch((error) => console.log('Error sharing', error));
     });
 });
 </script>

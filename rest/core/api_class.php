@@ -270,21 +270,44 @@ class API
                 switch ($this->method)
                 {
                     case 'GET':
-                        $return = json_encode(json_decode(file_get_contents('../../data/pet.json'), TRUE)[$_SESSION['si-pet-id']]);
+                        $file = json_decode(file_get_contents('../../data/pet.json'), TRUE)[$_SESSION['si-pet-id']];
+                        foreach ($file AS $key => $value)
+                        {
+                            $return .= "
+                                <div class='card' style='width: 18rem;'>
+                                    <img class='card-img-top' src='../img/gato_dormindo.jpg' alt='^._.^'>
+                                    <div class='card-body'>
+                                        <h5 class='card-title'>".$value['nome']."</h5>
+                                        <p class='card-text'>".$value['descricao']."</p>
+                                        <p class='card-text'>".$value['especie']."</p>
+                                        <p class='card-text'>".$value['peso']." Kgs</p>
+                                        <a href='#' class='btn btn-primary' onclick='editarPet(".$key.")'>Editar</a>
+                                        <a href='#' class='btn btn-danger' onclick='removerPet(".$key.")'>Remover</a>
+                                    </div>
+                                </div>";
+                        }
+                        $return_type = 'application/html';
                         break;
                     case 'POST':
                         $file = json_decode(file_get_contents('../../data/pet.json'), TRUE);
-                        $file[$_SESSION['si-pet-id']][] = ['id' => rand(), 'nome' => $this->data['nome'], 'especie' => $this->data['especie'], 'peso' => $this->data['peso']];
+                        $file[$_SESSION['si-pet-id']][rand()] = ['nome' => $this->data['nome'], 'descricao' => $this->data['descricao'], 'especie' => $this->data['especie'], 'peso' => $this->data['peso'], 'foto' => $this->data['foto']];
                         file_put_contents('../../data/pet.json', json_encode($file));
 
-                        $return = ['sucesso'];
+                        $return = ['Pet adicionado'];
+                        break;
+                    case 'PATCH':
+                        $file = json_decode(file_get_contents('../../data/pet.json'), TRUE);
+                        $file[$_SESSION['si-pet-id']][$this->data['id']] = ['nome' => $this->data['nome'], 'especie' => $this->data['especie'], 'peso' => $this->data['peso']];
+                        file_put_contents('../../data/pet.json', json_encode($file));
+
+                        $return = ['Pet editado'];
                         break;
                     case 'DELETE':
                         $file = json_decode(file_get_contents('../../data/pet.json'), TRUE);
-                        unset($file[$_SESSION['si-pet-id']][$this->data['pet']]);
+                        unset($file[$_SESSION['si-pet-id']][$this->data['id']]);
                         file_put_contents('../../data/pet.json', json_encode($file));
 
-                        $return = ['sucesso'];
+                        $return = ['Pet removido'];
                         break;
                 }
                 break;

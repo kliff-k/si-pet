@@ -22,16 +22,3 @@ if ('serviceWorker' in navigator) {
         console.log('ServiceWorker registration failed: ', err);
     });
 }
-
-// const btn = document.querySelector('#share-button');
-// btn.addEventListener('click', () => {
-//         navigator.share({
-//             title: 'Pet Picture',
-//             text: 'Compartilhe as fotos dos seus animais',
-//             url: 'https://singlehorizon.com/si-pet/app/home',
-//         })
-//         .then(() =>
-//             resultPara.textContent = 'MDN shared successfully'
-//         )
-//         .catch((error) => console.log('Error sharing', error));
-// });
