@@ -288,6 +288,23 @@ class API
                         break;
                 }
                 break;
+            case 'config':
+                switch ($this->method)
+                {
+                    case 'GET':
+                        $return = json_encode(json_decode(file_get_contents('../../data/config.json'), TRUE)[$_SESSION['si-pet-id']]);
+                        break;
+                    case 'POST':
+                        $file = json_decode(file_get_contents('../../data/config.json'), TRUE);
+                        $file[$_SESSION['si-pet-id']]['ventilador_maximo'] = $this->data['ventilador_maximo'];
+                        $file[$_SESSION['si-pet-id']]['ventilador_minimo'] = $this->data['ventilador_minimo'];
+                        $file[$_SESSION['si-pet-id']]['ventilador_desliga'] = $this->data['ventilador_desliga'];
+                        $file[$_SESSION['si-pet-id']]['notifica_frio'] = $this->data['notifica_frio'];
+                        file_put_contents('../../data/config.json', json_encode($file));
+                        $return = ['Dados salvos.'];
+                    break;
+                }
+            break;
             case 'food':
                 switch ($this->method)
                 {

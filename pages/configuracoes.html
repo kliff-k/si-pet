@@ -1,29 +1,3 @@
-<div class="text-center">
-    <h4 style="border-bottom: 2px solid black;">Alimentação</h4>
-    <div class="row justify-content-center">
-        <table class="table table-sm table-striped table-secondary w-75">
-            <thead>
-            <tr>
-                <th>Horário</th>
-                <th>Quantidade</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>08:00</td>
-                <td>85g</td>
-            </tr>
-            <tr>
-                <td>19:00</td>
-                <td>85g</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="center-content">
-    <button type="button" class="btn btn-dark px-5">Editar</button>
-</div>
 <div class="mt-4 text-center">
     <h4 style="border-bottom: 2px solid black;">Temperatura e Ventilação</h4>
     <div>
@@ -39,7 +13,7 @@
                 <td>
                     <form action="">
                         <div class="form-group">
-                            <input type="number" class="form-control" placeholder="33">
+                            <input type="number" class="form-control" placeholder="33" id="ventilador-maximo">
                             <!--Colocar valor atual no placeholder-->
                         </div>
                     </form>
@@ -50,7 +24,7 @@
                 <td>
                     <form action="">
                         <div class="form-group">
-                            <input type="number" class="form-control" placeholder="28">
+                            <input type="number" class="form-control" placeholder="28" id="ventilador-minimo">
                             <!--Colocar valor atual no placeholder-->
                         </div>
                     </form>
@@ -61,7 +35,7 @@
                 <td>
                     <form action="">
                         <div class="form-group">
-                            <input type="number" class="form-control" placeholder="24">
+                            <input type="number" class="form-control" placeholder="24" id="desliga-ventilador">
                             <!--Colocar valor atual no placeholder-->
                         </div>
                     </form>
@@ -72,7 +46,7 @@
                 <td>
                     <form action="">
                         <div class="form-group">
-                            <input type="number" class="form-control" placeholder="20">
+                            <input type="number" class="form-control" placeholder="20" id="temperatura-baixa">
                             <!--Colocar valor atual no placeholder-->
                         </div>
                     </form>
@@ -82,7 +56,36 @@
             </tbody>
         </table>
         <div class="center-content">
-            <button type="button" class="btn btn-dark px-5">Salvar</button>
+            <button type="button" class="btn btn-dark px-5" id="salva">Salvar</button>
         </div>
     </div>
 </div>
+<script>
+    $(()=>{
+        $.ajax({
+            url: "../rest/api/config",
+            method: "GET"
+        }).done(function( msg ) {
+            const env = $.parseJSON(msg);
+            $("#ventilador-maximo").val(env.ventilador_maximo);
+            $("#ventilador-minimo").val(env.ventilador_minimo);
+            $("#desliga-ventilador").val(env.ventilador_desliga);
+            $("#temperatura-baixa").val(env.notifica_frio);
+        });
+        $('#salva').on('click', () => {
+            const maximo = $("#ventilador-maximo").val();
+            const minimo = $("#ventilador-minimo").val();
+            const desliga = $("#desliga-ventilador").val();
+            const notifica_frio = $("#temperatura-baixa").val();
+            $.ajax({
+                url: "../rest/api/config",
+                method: "POST",
+                data: '{"ventilador_maximo": "'+maximo+'","ventilador_minimo": "'+minimo+'","ventilador_desliga": "'+desliga+'","notifica_frio": "'+notifica_frio+'"}',
+                dataType: "json"
+            }).done(function( msg ) {
+                alert( msg );
+                window.location.reload();
+            });
+        });
+    });
+</script>
