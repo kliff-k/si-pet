@@ -30,15 +30,6 @@ $(()=>{
         });
     });
 
-    $('#feed-button').on('click', () => {
-        $.ajax({
-            url: "../rest/api/alimentacao/deploy",
-            method: "POST"
-        }).done(function( msg ) {
-            alert( msg );
-        });
-    });
-
     $('#picture-button').on('click', () => {
         $.ajax({
             url: "../rest/api/photo",
@@ -47,6 +38,37 @@ $(()=>{
             alert( msg );
         });
     });
+
+    $('#feed-button').on('click', () => {
+        $.ajax({
+            url: "../rest/api/alimentacao/deploy",
+            method: "POST"
+        }).done(function( msg ) {
+            alert( msg );
+            window.location.reload();
+        });
+    });
+
+    $('#fill-button').on('click', () => {
+        $.ajax({
+            url: "../rest/api/food",
+            method: "POST"
+        }).done(function( msg ) {
+            alert( msg );
+            window.location.reload();
+        });
+    });
+
+    $('#schedule-button').on('click', () => {
+        $.ajax({
+            url: "../rest/api/alimentacao/deploy",
+            method: "POST"
+        }).done(function( msg ) {
+            alert( msg );
+        });
+    });
+
+
 });
 
 if ('serviceWorker' in navigator) {

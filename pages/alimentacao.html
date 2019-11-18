@@ -1,20 +1,38 @@
-<div class="center-content">
+<table class="table table-striped table-bordered table-secondary">
+    <thead class="text-center">
+    <tr>
+        <th colspan="3">Quantidade de ração</th>
+    </tr>
+    <tr>
+        <th>Reservatório primário</th>
+        <th class="align-middle">Tigela</th>
+        <th>Reservatório secundário</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="text-center">
+        <td id="quant-reserv-pri"></td>
+        <td id="quant-tigela"></td>
+        <td id="quant-reserv-sec">100g</td>
+    </tr>
+    </tbody>
+</table>
+<div class="text-center" style="border-top: 2px solid black;">
     <div>
-        <h2>Quantidade de ração</h2>
+        <button type="button" class="btn btn-danger mt-2" id="schedule-button">Refeições Automáticas <i class="fa fa-plus"></i></button>
+        <button type="button" class="btn btn-warning mt-2" id="feed-button">Servir uma nova porção</button>
+        <button type="button" class="btn btn-default mt-2" id="fill-button">Acrecentar ração ao reservatório</button>
     </div>
 </div>
-<div class="center-content" style="border-top: 2px solid black;">
-    <div style="border-right: 2px solid black;">
-        <div>Tigela</div>
-        <div>16g</div>
-    </div>
-    <div style="border-left: 2px solid black;">
-        <div>Reserva</div>
-        <div>1150g</div>
-    </div>
-</div>
-<div class="center-content" style="border-top: 2px solid black;">
-    <div>
-        <div>Refeições Automáticas <i class="fa fa-plus"></i></div>
-    </div>
-</div>
+<script>
+$(()=>{
+    $.ajax({
+        url: "../rest/api/food",
+        method: "GET"
+    }).done(function( msg ) {
+        const food = $.parseJSON(msg);
+        $("#quant-reserv-pri").html(food.reservatorio ? food.reservatorio+"g" : "Vazio");
+        $("#quant-tigela").html(food.tigela ? food.tigela+"g" : "Vazia");
+    });
+});
+</script>

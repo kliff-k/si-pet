@@ -191,14 +191,14 @@ class API
 
                                 $file = json_decode(file_get_contents('../../external/food.json'), TRUE);
 
-                                if($file[$_SESSION['si-pet-id']]['reservoir'] < 20)
+                                if($file[$_SESSION['si-pet-id']]['reservatorio'] < 20)
                                 {
                                     $return = ['Reservatório vazio'];
                                     break;
                                 }
 
-                                $file[$_SESSION['si-pet-id']]['plate'] = $file[$_SESSION['si-pet-id']]['plate'] + 20;
-                                $file[$_SESSION['si-pet-id']]['reservoir'] = $file[$_SESSION['si-pet-id']]['reservoir'] - 20;
+                                $file[$_SESSION['si-pet-id']]['tigela'] = $file[$_SESSION['si-pet-id']]['tigela'] + 20;
+                                $file[$_SESSION['si-pet-id']]['reservatorio'] = $file[$_SESSION['si-pet-id']]['reservatorio'] - 20;
                                 file_put_contents('../../external/food.json', json_encode($file));
 
                                 $file = json_decode(file_get_contents('../../data/log.json'), TRUE);
@@ -284,6 +284,12 @@ class API
                 {
                     case 'GET':
                         $return = json_encode(json_decode(file_get_contents('../../external/food.json'), TRUE)[$_SESSION['si-pet-id']]);
+                        break;
+                    case 'POST':
+                        $file = json_decode(file_get_contents('../../external/food.json'), TRUE);
+                        $file[$_SESSION['si-pet-id']]['reservatorio'] = $file[$_SESSION['si-pet-id']]['reservatorio'] + 100;
+                        file_put_contents('../../external/food.json', json_encode($file));
+                        $return = ['100g adicionadas ao reservatório primário.'];
                         break;
                 }
                 break;
