@@ -1,0 +1,21 @@
+Personas
+
+Personas
+Dona Gertrudes Gonçalves, 69
+Status: Primária;
+Objetivo: ver os netos crescerem fortes e felizes;
+Habilidades: assistente social aposentada, técnica em corte e costura;
+Tarefas: realiza compartilhamento desautorizado de informações alheias durante o decorrer do dia. Espionagem industrial de elementos da vizinhança. Oferece conselhos não solicitados para pessoas desconhecidas. Executa suas tarefas ao longo do dia, deixando as noites livres para assistir as novelas;
+Relacionamentos: gatos, netos, gatos dos vizinhos e, talvez, os vizinhos;
+Requisitos: alimentar o gato obeso e diabético (tipo 2) corretamente;
+Expectativas: configurar o app uma vez e tudo vai se resolver na vida da Dona Gertrudes.
+
+
+Me. Jonas Johnson, 26
+Status: Primária;
+Objetivo: otimizar o uso de seu tempo livre;
+Habilidades: freelancer secutiry bounty hunter, formado no MIT;
+Tarefas: procura vulnerabilidades em sistemas durante a noite, por ser seu ganha pão, considera seu trabalho importante, mas gostaria de trabalhar como criador de lhamas full stack;
+Relacionamentos: relaciona-se com as waifus dos dating sims que ele joga e com seus amigos onlines de WOW;
+Requisitos: precisa otimizar o uso de seu tempo diário automatizando a alimentação de seus bichanos e uma full stack waifu (de verdade);
+Expectativas: Espera um produto funcional, que alimente seu gato nas horas certas e que não tenha muitos bugs, mas certamente algumas vulnerabilidades para ele poder mostrar para os devs e ganhar um trocado.

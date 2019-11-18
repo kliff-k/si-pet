@@ -1,0 +1,175 @@
+Artigo 1:
+
+Nome do estudante: Murilo da Silva Mascarenhas de Moraes
+
+Título do artigo: Simulation of Automatic Food Feeding System for Pet Animals
+Autores: Dharanidharan.j, R.Puviarasi
+Publicado em: 4th International Conference on Advances in Electrical, Electronics, Information, Communication and Bio-Informatics (AEEICB-18)
+
+I) Introdução:  
+a) Qual o contexto abordado?
+Propriedades de criação de animais aquáticos que necessitam de cuidado constante com a alimentação, até quando o proprietário está ausente.
+
+b) Qual a principal questão ou problema colocado?
+Automatização de alimentação de animais (no caso, peixes), para diminuir o custo e maximizar o proveito da ração / iscas vivas a fim de economizar as porções.
+
+c) Qual o objetivo visado? O que se pretende constatar ou demonstrar?
+Planejar e construir um sistema de alimentação com base no microcontrolador Arduino que fornece um quantidade exata de alimento para peixes em períodos específicos de tempo.
+
+d) Há plano do artigo no final da Introdução?
+Não.
+
+II) Referencial Teórico:
+a) Quais sãos o autores/teorias/conceitos que já estudaram os principais assuntos abordados e dão sustentação ao texto?
+Patrick Henry G. Baniqued, Martin Joseph C. De Castro, Chael Triston T. Luzano e o como eles abordaram a alimentação de peixes com base em microcontroladores.
+
+III) Metodologia/ Desenvolvimento:
+a) Quais os procedimentos metodológicos adotados?
+Trabalho de natureza empírica, eles buscam planejar, construir e implementar o sistema de alimentação.
+Estudando as funcionalidades modulares do arduino, o trabalho foi planejado ambos o hardware e a programação vinculada ao dispositivo e o controle dos servos, de forma a otimizar a sustentabilidade dos peixes com o sistema.
+Combinando o equipamento e a programação nos estágios finais afim de gerar um driver para a comunicação do sistema com o servo responsável pelo controle da alimentação.
+
+b) Houve validação (por meio de experimentação)? 
+Foi obtido sucesso com a implementação, em escala local, com a possibilidade de expansão para a utilização em lagos, com planejamento de autonomia de um dia.
+
+c) Em havendo artefato proposto, ele está disponível para utilização e/ou modificação?
+Sim, o artigo fornece os meios de replicar a construição do sistema, dado que a implementação listada utiliza hardware específico, onde será necessário modificações caso substituido por dispositivos paralelos.
+
+IV) Conclusões:
+a) Resultados / Conclusões (Respostas aos objetivos propostos)
+O artigo mostra que, com o método descrito, foram capazes de construir o dispositivo de forma cíclica, capaz de rotacionar e distribuir alimento em 10 passos, capazes de funcionar por um dia de forma autonoma, 
+sendo capaz de ajustar a periodicidade de acordo com seus pré-requisitos, sendo possível escalar para uso em grande escala, e para atender outros tipos de animais como aves, tartarugas e outros.
+
+b) Limitações
+Não foi citados possível problemas com a implementação/sistema, nem listado pontos fracos e/ou melhoria possível de ser aplicada.
+
+c) Trabalhos Futuros
+Não foi proposta evolução do sistema, fora a possibilidade de ser ajustado para larga escala.
+
+d) Suas sugestões de trabalhos futuros.
+Acredito que é possivel integrar o sistema com uma interface móvel, afim de pode controlar o sistema à distância.
+Adicionar um pequeno conjunto de sensores ao arduino não deve ser trabalhoso, poderia gerar um log do estado do aquário/lago para ser consultado em caso de anomalias no ambiente.
+
+e) Suas questões pertinentes para discussão
+Como melhor organizar o dispositivo? Houve pouca descrição sobre o trabalho físico involvido no sistema, e gostaria de entender melhor como tudo se comunica.
+Como expandir e adicionar módulos ao sistema já existente? O hardware é robusto e conhecido por ser facilmente manipulado, casos de como melhorar outros aspéctos do dispositivo seriam extremamente úteis.
+
+V) Resumo:
+Dharanidharan e Puviarasi exploram as possibilidades do uso de microcontroladores como o arduino uno, junto com um servo (de passo a passo), para construir um sistema simples de alimentação de animais de pequeno porte.
+Explorando a alimentação de peixes em aquário, eles constroem um driver que media a comunicação entre o arduino e o servo para distribuir porções de alimento (isca e ração) em quantidades específicas, em períoos definidos de tempo,
+de forma a automatizar o processo e otimizar os gastos com alimentação. Foi observado sucesso com a execução em pequena escala, com o motor girando distâncias específicas para liberar as porções regradas, 
+formulando a possibilidade de escalar o uso para outros tipos de ambiente e animais.
+
+----------------
+
+Artigo 2:
+
+Nome do estudante: Pedro Lucas Silva Haga Torres
+
+Título do artigo: Smart Pet House
+Autores: MANDY, A. et al.
+Publicado em: IEEE, 2016 International Conference on Industrial Informatics and Computer Systems (CIICS).
+
+I) Introdução:  
+a) Qual o contexto abordado?
+O artigo se situa dentro das necessidades sociais atuais, no contexto de pessoas (e. g. pais e mães) que trabalham o dia inteiro e possuem animais de estimação que passam a maior parte do dia sozinhos.
+
+b) Qual a principal questão ou problema colocado?
+Existe uma preocupação crescente com a qualidade de vida dos animais de estimação na situação descrita no contexto. Especificamente, com relação a alimentação, hidratação, limpeza do ambiente, iluminação, ventilação e monitoramento, com o intuito de prevenir emergências.
+
+c) Qual o objetivo visado? O que se pretende constatar ou demonstrar?
+A criação de uma “casinha” inteligente (a dita smart pet house do título) para o animal que auxilie o dono a cuidar de forma melhor e mais eficiente de seu animal de estimação.
+
+d) Há plano do artigo no final da Introdução?
+Sim, revisão da literatura na Seção II, detalhes do design e da implementação na Seção III e conclusão na seção IV.
+
+II) Referencial Teórico:
+a) Quais sãos os autores/teorias/conceitos que já estudaram os principais assuntos abordados e dão sustentação ao texto?
+Pragnell, M., Spence L. e Moore R. fornecem o conceito de uma casa inteligente (smart house) e são citadas duas implementações disponíveis no mercado.
+
+III) Metodologia/ Desenvolvimento:
+a) Quais os procedimentos metodológicos adotados?
+A natureza do trabalho é empírica: projetar, construir e implementar a casa para o animal. No trabalho é citado o material do qual a casa é construída, os itens necessários para a instalação (que tornam a casa inteligente) e a interface de usuário.
+
+b) Houve validação (por meio de experimentação)?
+Não é citado nenhum tipo de validação.
+
+c) Em havendo artefato proposto, ele está disponível para utilização e/ou modificação?
+Sim, basta construir ou adaptar uma casa de animal já existente, levando em consideração certos pontos levantados pelos autores (e. g. usar materiais duráveis e resistentes e afixar os componentes elétricos ou eletrônicos de forma a evitar o contato do animal com esses).
+
+IV) Conclusões:
+a) Resultados / Conclusões (Respostas aos objetivos propostos)
+O objetivo do trabalho é introduzir, projetar e implementar a “casinha” inteligente, entregando ao dono do animal a automação de tarefas mais simples (como monitoramento e alimentação, por exemplo). Não fica claro se a proposta soluciona, de fato, os problemas citados, tampouco são citadas outras soluções.
+
+b) Limitações
+Não houve nenhum tipo de teste prático com animais, tampouco da casa proposta montada e funcional e os autores não reconhecem esses pontos fracos.
+
+c) Trabalhos Futuros (Dica: O autor propõe alguma continuação?)
+Os autores desejam verificar o problema de consumo de energia, acrescentar um sistema de detecção de falhas melhor e acrescentar um recipiente para água no projeto.
+
+d) Suas sugestões de trabalhos futuros.
+Construir a casa proposta, testar a aceitação dos animais com relação a casa e testar exaustivamente os sistemas integrados para garantir o mínimo de falhas possível.
+
+e) Suas questões pertinentes para discussão.
+É no mínimo curioso desenvolver uma casa para animais e não testar a aceitação dela com seus potenciais usuários.
+
+V) Resumo:
+O trabalho de MANDY et al. propõe um projeto de uma casa inteligente para animais, permitindo ao dono automatizar tarefas como a alimentação e climatização dessa casa.
+
+--------------
+
+Artigo 3:
+
+Nome do estudante: Hector Rocha Margittay
+
+Título do artigo: NuriPet: A Smart Pet Feeding Machine for SNS 
+Autores: Ji-Yong Jung, Chul-Min Ji, Joo-Rak Sohn, Hong-Jae Meng, and Byung-Sun Hwang
+Publicado em: IEEE, International Conference on Consumer Electronics (ICCE) 2016 
+
+I) Introdução:  
+a) Qual o contexto abordado?
+O artigo utiliza do contexto dos donos de animais de estimação (mais especificamente os donos de gatos e cães) dentro da sociedade atual, onde muito desses fazem parte de comunidades de compartilhamento de histórias sobre os seu pets.
+
+b) Qual a principal questão ou problema colocado?
+Muito dos donos de pets têm grande parte do seu tempo ocupado pela sua rotina diária e não compartilham muito sobre a vida dos pets e, além disso, não se possui uma forma de saber com  eles estão quando os seus donos não se encontram em casa.
+
+
+c) Qual o objetivo visado? O que se pretende constatar ou demonstrar?
+Desenvolver um dispositivo alimentador para pets que é acionado por um pedal e possui uma câmera que fotografa o animal ao ser ativado. Além disso o dispositivo pode ser controlado por um aplicativo de celular, que também possibilita o compartilhamento da fotos no Facebook do usuário.
+
+d) Há plano do artigo no final da Introdução?
+Não há um plano definido.
+
+II) Referencial Teórico:
+a) Quais sãos o autores/teorias/conceitos que já estudaram os principais assuntos abordados e dão sustentação ao texto?
+Não foram citados estudos de base para o artigo.
+
+III) Metodologia/ Desenvolvimento:
+a) Quais os procedimentos metodológicos adotados? (natureza do trabalho: empírico, teórico, histórico) – (coleta de dados: questionário, entrevista, levantamento bibliográfico). Como a pesquisa foi desenvolvida? Quais as principais relações entre teoria e prática?
+A natureza do trabalho é teórica, já que apesar de que o dispositivo e aplicativo foram desenvolvidos, apenas é citado que foram feitas entrevistas com veterinários que deram o seu feedback de como a tecnologia pode ser melhorada.
+
+b) Houve validação (por meio de experimentação)? (Dica: O autor cita estudo de caso feito? Comenta se é na indústria ou não? Apresenta passo a passo o estudo de caso?)
+Não foi abordada nenhuma forma de validação.
+
+c) Em havendo artefato proposto, ele está disponível para utilização e/ou modificação?
+O artigo cita que há um blog do projeto que disponibiliza o arquivo do desenho dos dispositivo para ser impresso em impressoras 3D, porém esse blog está em coreano.
+
+IV) Conclusões:
+a) Resultados / Conclusões 
+O autores apenas concluem que o projeto pode ser melhorado citando o que ele pretendem implementar.
+
+b) Limitações (Dica: Comentar se o autor reconhece pontos fracos no seu trabalho. Situações que provavelmente sua solução não é adequada. Situações que existem, mas que a solução não contempla. Críticas ao próprio trabalho.) 
+A estrutura do dispositivo e frágil e não resistiria a ataques dos animais que tentariam acessar a comida armazenada; Seria difícil construir uma comunidade em cima do nicho do mercado para o produto.
+
+c) Trabalhos Futuros
+Os autores citam as segunites melhorias que serão adicionadas ao projeto: Possibilidade de envio de messagens de voz, adição de sensores de proximidade para ativar a câmera automaticamente, transmissão ao vivo e gravação de vídeos através do dispositivo e melhorias na estrutura do dispositivo para torná-lo mais resistente.
+
+d) Suas sugestões de trabalhos futuros.
+O produto utiliza do alimentador como ferramenta para fotografar os animais de estimação, porém também seria interessante se ele utilizasse os dados gerados pelos uso do dispositivo para informar o usuário sobre o alimentação do seu pet.
+
+e) Suas questões pertinentes para discussão
+Seria interessante se o artigo demonstrasse teste do produto com usuários.
+
+V) Resumo:
+O artigo trata do desenvolvimento do NuriPet, um dispositivo de alimentação automática para pets que tira fotos que podem ser compartilhadas pelo Facebook através de um aplicativo, este também pode ser utilizado para controle remoto do dispositivo. O corpo do dispositivo foi construído com uma impressora 3D e internamente ele utiliza um Raspberry Pi para controlar o pedal para ativação, a câmera e o servomotor que libera a comida. A proposta foi apresentada para veterinários que apontaram o que pode ser melhorado no projeto.
+

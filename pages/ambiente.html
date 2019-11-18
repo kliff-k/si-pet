@@ -1,68 +1,158 @@
-<table class="table table-bordered">
-    <tbody>
-    <tr>
-        <td>Status</td>
-        <td>
-            <div class="table-success">Ok</div>
-            <div class="table-warning">Atenção</div>
-            <div class="table-danger">Crítico</div>
-        </td>
-    </tr>
-    <tr>
-        <td>Tigela</td>
-        <td>
-            <div class="table-success">Cheia</div>
-            <div class="table-primary">Vazia</div>
-            <div class="table-warning">Em uso</div>
-        </td>
-    </tr>
-    <tr>
-        <td>Container primário de ração</td>
-        <td>
-            <div class="table-success">100%</div>
-            <div class="table-primary">50%</div>
-            <div class="table-warning">25%</div>
-            <div class="table-danger">Vazio</div>
-        </td>
-    </tr>
-    <tr>
-        <td>Container secundário de ração</td>
-        <td>
-            <div class="table-success">100%</div>
-            <div class="table-primary">50%</div>
-            <div class="table-warning">25%</div>
-            <div class="table-danger">Vazio</div>
-        </td>
-    </tr>
-    <tr>
-        <td>Temperatura</td>
-        <td>
-            <div class="table-danger">&gt;33° C</div>
-            <div class="table-warning">&gt;28° C</div>
-            <div class="table-success">&gt;20° C</div>
-            <div class="table-primary">&lt;20° C</div>
-        </td>
-    </tr>
-    <tr>
-        <td>Ventoinha</td>
-        <td>
-            <div class="table-success">Ligada</div>
-            <div class="table-primary">Desligada</div>
-            <div class="table-warning">Erro</div>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
+<div class="mt-4 text-center">
+    <h4 style="border-bottom: 2px solid black;">Ambiente</h4>
+    <div>
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th class="align-middle">Sensor</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-danger">
+                <td>Temperatura</td>
+                <td id="temp"></td>
+            </tr>
+            <tr class="table-warning">
+                <td>Ventilador</td>
+                <td id="vent"></td>
+            </tr>
+            <tr class="table-warning">
+                <td>Iluminação</td>
+                <td id="light"></td>
+            </tr>
+            <tr class="table-success">
+                <td>Humidade</td>
+                <td id="humi"></td>
+            </tr>
+            </tbody>
+        </table>
+        <h4 style="border-bottom: 2px solid black;">Ações</h4>
+        <div>
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th class="align-middle">Dispositivo</th>
+                    <th>Opção</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Ventilador</td>
+                    <td>
+                        <div class="form-group">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-sm" id="ventilador-ligado-label">
+                                    <input type="radio" name="luz" id="ventilador-ligado" autocomplete="off"> Ligado
+                                </label>
+                                <label class="btn btn-sm" id="ventilador-desligado-label">
+                                    <input type="radio" name="luz" id="ventilador-desligado" autocomplete="off"> Desligado
+                                </label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Iluminação</td>
+                    <td>
+                        <div class="form-group">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-sm" id="luz-ligada-label">
+                                    <input type="radio" name="luz" id="luz-ligada" autocomplete="off"> Ligada
+                                </label>
+                                <label class="btn btn-sm" id="luz-desligada-label">
+                                    <input type="radio" name="luz" id="luz-desligada" autocomplete="off"> Desligada
+                                </label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="center-content">
+            <button type="button" class="btn btn-dark px-5" id="salva">Salvar</button>
+            <button type="button" class="btn btn-default px-5" id="geraDados">Gera dados de ambiente</button>
+        </div>
+    </div>
+</div>
 <script>
     $(()=>{
         $.ajax({
-            url: "../rest/api/gallery",
+            url: "../rest/api/environment",
             method: "GET"
         }).done(function( msg ) {
-            const food = $.parseJSON(msg);
-            $("#quant-reserv-pri").html(food.reservatorio ? food.reservatorio+"g" : "Vazio");
-            $("#quant-tigela").html(food.tigela ? food.tigela+"g" : "Vazia");
+            const env = $.parseJSON(msg);
+            $("#temp").html(env.temperatura+"°");
+            $("#vent").html(env.ventilador == 1 ? "Ligado" : "Desligado");
+            $("#light").html(env.luz == 1 ? "Ligada" : "Desligada");
+            $("#humi").html(env.humidade+"%");
+            if(env.ventilador == 1)
+            {
+                $("#ventilador-ligado-label").addClass("btn-primary");
+                $("#ventilador-desligado-label").addClass("btn-secondary");
+            }
+            else
+            {
+                $("#ventilador-ligado-label").addClass("btn-secondary");
+                $("#ventilador-desligado-label").addClass("btn-primary");
+            }
+            if(env.luz == 1)
+            {
+                $("#luz-ligada-label").addClass("btn-primary");
+                $("#luz-desligada-label").addClass("btn-secondary");
+            }
+            else
+            {
+                $("#luz-ligada-label").addClass("btn-secondary");
+                $("#luz-desligada-label").addClass("btn-primary");
+            }
+        });
+        $("#ventilador-ligado-label").on("click", () => {
+            $("#ventilador-ligado-label").removeClass("btn-secondary");
+            $("#ventilador-ligado-label").addClass("btn-primary");
+            $("#ventilador-desligado-label").removeClass("btn-primary");
+            $("#ventilador-desligado-label").addClass("btn-secondary");
+        });
+        $("#ventilador-desligado-label").on("click", () => {
+            $("#ventilador-ligado-label").removeClass("btn-primary");
+            $("#ventilador-ligado-label").addClass("btn-secondary");
+            $("#ventilador-desligado-label").removeClass("btn-secondary");
+            $("#ventilador-desligado-label").addClass("btn-primary");
+        });
+        $("#luz-ligada-label").on("click", () => {
+            $("#luz-ligada-label").removeClass("btn-secondary");
+            $("#luz-ligada-label").addClass("btn-primary");
+            $("#luz-desligada-label").removeClass("btn-primary");
+            $("#luz-desligada-label").addClass("btn-secondary");
+        });
+        $("#luz-desligada-label").on("click", () => {
+            $("#luz-ligada-label").removeClass("btn-primary");
+            $("#luz-ligada-label").addClass("btn-secondary");
+            $("#luz-desligada-label").removeClass("btn-secondary");
+            $("#luz-desligada-label").addClass("btn-primary");
+        });
+        $('#salva').on('click', () => {
+            const ventilador = $("#ventilador-ligado-label").hasClass("btn-primary") ? "1" : "0";
+            const luz = $("#luz-ligada-label").hasClass("btn-primary") ? "1" : "0";
+            $.ajax({
+                url: "../rest/api/environment",
+                method: "PATCH",
+                data: '{"ventilador": "'+ventilador+'", "luz": "'+luz+'"}',
+                dataType: "json"
+            }).done(function( msg ) {
+                alert( msg );
+                window.location.reload();
+            });
+        });
+        $('#geraDados').on('click', () => {
+            $.ajax({
+                url: "../rest/api/environment",
+                method: "POST"
+            }).done(function( msg ) {
+                alert( msg );
+                window.location.reload();
+            });
         });
     });
 </script>

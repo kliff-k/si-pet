@@ -66,11 +66,11 @@
             url: "../rest/api/config",
             method: "GET"
         }).done(function( msg ) {
-            const env = $.parseJSON(msg);
-            $("#ventilador-maximo").val(env.ventilador_maximo);
-            $("#ventilador-minimo").val(env.ventilador_minimo);
-            $("#desliga-ventilador").val(env.ventilador_desliga);
-            $("#temperatura-baixa").val(env.notifica_frio);
+            const conf = $.parseJSON(msg);
+            $("#ventilador-maximo").val(conf.ventilador_maximo);
+            $("#ventilador-minimo").val(conf.ventilador_minimo);
+            $("#desliga-ventilador").val(conf.ventilador_desliga);
+            $("#temperatura-baixa").val(conf.notifica_frio);
         });
         $('#salva').on('click', () => {
             const maximo = $("#ventilador-maximo").val();

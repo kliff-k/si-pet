@@ -348,6 +348,22 @@ class API
                     case 'GET':
                         $return = json_encode(json_decode(file_get_contents('../../external/environment.json'), TRUE)[$_SESSION['si-pet-id']]);
                         break;
+                    case 'POST':
+                        $file = json_decode(file_get_contents('../../external/environment.json'), TRUE);
+                        $file[$_SESSION['si-pet-id']]['temperatura'] = rand(10,35);
+                        $file[$_SESSION['si-pet-id']]['ventilador'] = rand(0,1);
+                        $file[$_SESSION['si-pet-id']]['luz'] = rand(0,1);
+                        $file[$_SESSION['si-pet-id']]['humidade'] = rand(10,90);
+                        file_put_contents('../../external/environment.json', json_encode($file));
+                        $return = ['Dados de ambiente gerados'];
+                        break;
+                    case 'PATCH':
+                        $file = json_decode(file_get_contents('../../external/environment.json'), TRUE);
+                        $file[$_SESSION['si-pet-id']]['ventilador'] = $this->data['ventilador'];
+                        $file[$_SESSION['si-pet-id']]['luz'] = $this->data['luz'];
+                        file_put_contents('../../external/environment.json', json_encode($file));
+                        $return = ['Dispositivos atuados.'];
+                        break;
                 }
                 break;
             case 'door':
