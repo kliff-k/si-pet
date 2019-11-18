@@ -1,9 +1,7 @@
-<div class="center-content">
-  <div>
-
-  </div>
-</div>
-<button type="button" class="btn btn-primary" id="share-button">Teste</button>
+<div class="gallery" id="gallery"></div>
+<br>
+<button type="button" class="btn btn-primary" id="share-button">Compartilhar</button>
+<button type="button" class="btn btn-primary" id="remover-button">Remover</button>
 <script>
 $(()=>{
     $.ajax({
@@ -11,6 +9,24 @@ $(()=>{
         method: "GET"
     }).done(function( msg ) {
         $("#gallery").html(msg);
+    });
+    $('#remover-button').on('click', function(){
+        let array = [];
+        $(".gallery-thumb").each((index, element) => {
+            if($(element).hasClass("selected"))
+                array.push('"'+$(element).data('value')+'"');
+        });
+        const ids = array.join(',');
+
+        $.ajax({
+            url: "../rest/api/photo",
+            method: "DELETE",
+            data: '{"photos": ['+ids+']}',
+            dataType: 'json'
+        }).done(function( msg ) {
+            alert(msg);
+            window.location.reload();
+        });
     });
     $('#share-button').on('click', function(){
         navigator.share({
@@ -22,4 +38,10 @@ $(()=>{
         ).catch((error) => console.log('Error sharing', error));
     });
 });
+function toggleSelected(id){
+    if($('#gallery-thumb-'+id).hasClass("selected"))
+        $('#gallery-thumb-'+id).removeClass("selected");
+    else
+        $('#gallery-thumb-'+id).addClass("selected");
+}
 </script>

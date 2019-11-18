@@ -253,18 +253,18 @@ class API
                         break;
                     case 'POST':
                         $file = json_decode(file_get_contents('../../data/photos.json'), TRUE);
-                        $file[$_SESSION['si-pet-id']][] = ['id' => rand(), 'horario' => date('d/m/Y')];
+                        $file[$_SESSION['si-pet-id']][rand()] = ['horario' => date('d/m/Y')];
                         file_put_contents('../../data/photos.json', json_encode($file));
 
                         $return = ['Foto adicionada à galeria'];
                         break;
                     case 'DELETE':
                         $file = json_decode(file_get_contents('../../data/photos.json'), TRUE);
-                        foreach (json_decode($this->data['photos'], TRUE) AS $chave)
+                        foreach ($this->data['photos'] AS $chave)
                             unset($file[$_SESSION['si-pet-id']][$chave]);
                         file_put_contents('../../data/photos.json', json_encode($file));
 
-                        $return = ['sucesso'];
+                        $return = ['Fotos removidas.'];
                         break;
                 }
                 break;
@@ -272,7 +272,16 @@ class API
                 switch ($this->method)
                 {
                     case 'GET':
-                        $return = json_encode(json_decode(file_get_contents('../../data/photos.json'), TRUE)[$_SESSION['si-pet-id']]);
+                        $file = json_decode(file_get_contents('../../data/photos.json'), TRUE)[$_SESSION['si-pet-id']];
+                        foreach ($file AS $key => $value)
+                        {
+                            $return .= "
+                                    <div class='gallery-thumb' data-value='".$key."' onclick='toggleSelected(".$key.")' id='gallery-thumb-".$key."'>
+                                        <img src='../img/gato_pulando.jpg' alt='fotoPet'>
+                                        <div class='gallery-check-button'></div>
+                                    </div>";
+                        }
+                        $return_type = 'application/html';
                         break;
                 }
                 break;
