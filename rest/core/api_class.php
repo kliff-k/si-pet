@@ -281,7 +281,7 @@ class API
                                         <p class='card-text'>".$value['descricao']."</p>
                                         <p class='card-text'>".$value['especie']."</p>
                                         <p class='card-text'>".$value['peso']." Kgs</p>
-                                        <a href='#' class='btn btn-primary' onclick='editarPet(".$key.")'>Editar</a>
+                                        <a href='#' class='btn btn-primary' onclick='editarPetModal(".$key.")' data-toggle='modal' data-target='#modal-pet'>Editar</a>
                                         <a href='#' class='btn btn-danger' onclick='removerPet(".$key.")'>Remover</a>
                                     </div>
                                 </div>";
