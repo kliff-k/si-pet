@@ -226,8 +226,8 @@ class API
                                 $return_type = 'application/html';
                                 break;
                             case 'DELETE':
-                                $file = json_decode(file_get_contents('../../data/schedule.json'), TRUE)[$_SESSION['si-pet-id']];
-                                unset($file[$this->data['id']]);
+                                $file = json_decode(file_get_contents('../../data/schedule.json'), TRUE);
+                                unset($file[$_SESSION['si-pet-id']][$this->data['id']]);
                                 file_put_contents('../../data/schedule.json', json_encode($file));
                                 $return = ['Agendamento removido.'];
                                 break;
