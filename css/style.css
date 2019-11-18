@@ -283,3 +283,27 @@ main {
     color: var(--primary-color);
     font-weight: 900;
 }
+
+.gallery-options {
+    display: flex;
+    justify-content: end;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - 32px);
+    padding: 16px 24px;
+    margin: 0 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background: var(--base-color);
+    box-shadow: 0 -.125rem .25rem rgba(0,0,0,.075);
+}
+@media (min-width: 992px) {
+    .gallery-options{
+        width: calc(100% - var(--sidenav-width) - 32px);
+    }
+}
+
+.gallery-options>button {
+    margin-left: 16px;
+}
