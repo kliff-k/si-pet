@@ -178,7 +178,17 @@ class API
                 switch ($this->method)
                 {
                     case 'GET':
-                        $return = json_encode(json_decode(file_get_contents('../../data/log.json'), TRUE)[$_SESSION['si-pet-id']]);
+                        $file = json_decode(file_get_contents('../../data/log.json'), TRUE)[$_SESSION['si-pet-id']]['alimentacao'];
+                        $file = array_reverse($file);
+                        foreach ($file AS $value)
+                        {
+                            $return .= "
+                                <tr>
+                                    <td>".$value['data']."</td>
+                                    <td>".$value['hora']."</td>
+                                    <td>Alimentação ".$value['tipo']." fornecida</td>
+                                </tr>";
+                        }
                         break;
                 }
                 break;
@@ -203,7 +213,7 @@ class API
                                 file_put_contents('../../external/food.json', json_encode($file));
 
                                 $file = json_decode(file_get_contents('../../data/log.json'), TRUE);
-                                $file[$_SESSION['si-pet-id']]['alimentacao'][] = ['tipo' => 'manual', 'horario' => date('d/m/Y')];
+                                $file[$_SESSION['si-pet-id']]['alimentacao'][] = ['tipo' => 'manual', 'data' => date('d/m/Y'), 'hora' => date('h:i')];
                                 file_put_contents('../../data/log.json', json_encode($file));
 
                                 $return = ['Porção de alimento liberada'];

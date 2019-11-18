@@ -6,7 +6,7 @@
         <th scope="col">Evento</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="logBody">
     <tr>
         <td>17/11/2019</td>
         <td>19:15</td>
@@ -124,3 +124,13 @@
     </tr>
     </tbody>
 </table>
+<script>
+    $(()=>{
+        $.ajax({
+            url: "../rest/api/history",
+            method: "GET"
+        }).done(function( msg ) {
+            $("#logBody").prepend(msg);
+        });
+    });
+</script>
