@@ -11,64 +11,6 @@ $(()=>{
         $('#sidenav').addClass('active');
         $('#sidenav-overlay').addClass('active');
     });
-
-    $('#activate-id').on('click', () => {
-        const id = $('#si-pet-id').val();
-        if(!id)
-        {
-            alert('É necessário informar um id');
-            return 0;
-        }
-
-        $.ajax({
-            url: "../rest/api/login",
-            method: "POST",
-            data: '{"id": "'+id+'"}',
-            dataType: "json"
-        }).done(function( msg ) {
-            window.location.href = './home';
-        });
-    });
-
-    $('#picture-button').on('click', () => {
-        $.ajax({
-            url: "../rest/api/photo",
-            method: "POST"
-        }).done(function( msg ) {
-            alert( msg );
-        });
-    });
-
-    $('#feed-button').on('click', () => {
-        $.ajax({
-            url: "../rest/api/alimentacao/deploy",
-            method: "POST"
-        }).done(function( msg ) {
-            alert( msg );
-            window.location.reload();
-        });
-    });
-
-    $('#fill-button').on('click', () => {
-        $.ajax({
-            url: "../rest/api/food",
-            method: "POST"
-        }).done(function( msg ) {
-            alert( msg );
-            window.location.reload();
-        });
-    });
-
-    $('#schedule-button').on('click', () => {
-        $.ajax({
-            url: "../rest/api/alimentacao/deploy",
-            method: "POST"
-        }).done(function( msg ) {
-            alert( msg );
-        });
-    });
-
-
 });
 
 if ('serviceWorker' in navigator) {

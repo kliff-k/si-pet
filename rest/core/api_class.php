@@ -147,6 +147,7 @@ class API
     private function execSource ()
     {
         $return = '';
+        $return_type = 'application/json';
         // Endpoints
         switch ($this->path[1])
         {
@@ -214,13 +215,21 @@ class API
                         {
                             case 'POST':
                                 $file = json_decode(file_get_contents('../../data/schedule.json'), TRUE);
-                                $file[$_SESSION['si-pet-id']]['schedule'][] = ['quantidade' => $this->data['quantidade'], 'horario' => $this->data['horario']];
+                                $file[$_SESSION['si-pet-id']][rand()] = ['quantidade' => $this->data['quantidade'], 'horario' => $this->data['horario']];
                                 file_put_contents('../../data/schedule.json', json_encode($file));
-
-                                $return = ['sucesso'];
+                                $return = ['Refeição agendada'];
                                 break;
                             case 'GET':
-                                $return = json_encode(json_decode(file_get_contents('../../data/schedule.json'), TRUE)[$_SESSION['si-pet-id']]);
+                                $array = json_decode(file_get_contents('../../data/schedule.json'), TRUE)[$_SESSION['si-pet-id']];
+                                foreach ($array AS $key => $value)
+                                    $return .= "<tr class='text-center'><td>".$value['horario']."</td><td>".$value['quantidade']."</td><td><button type='button' onclick='removeSchedule(".$key.")'><i class='fa fa-times fa-2x'></button></i></td></tr>";
+                                $return_type = 'application/html';
+                                break;
+                            case 'DELETE':
+                                $file = json_decode(file_get_contents('../../data/schedule.json'), TRUE)[$_SESSION['si-pet-id']];
+                                unset($file[$this->data['id']]);
+                                file_put_contents('../../data/schedule.json', json_encode($file));
+                                $return = ['Agendamento removido.'];
                                 break;
                         }
                         break;
@@ -314,7 +323,7 @@ class API
         if(!$return)
             $this->endExec(400,['Método inadequado']);
 
-        $this->endExec(200,$return);
+        $this->endExec(200,$return, $return_type);
     }
 
     /**

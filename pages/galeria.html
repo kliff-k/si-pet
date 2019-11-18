@@ -1,5 +1,17 @@
 <div class="center-content">
   <div>
-      <?=$return?>
+
   </div>
 </div>
+<script>
+$(()=>{
+    $.ajax({
+        url: "../rest/api/gallery",
+        method: "GET"
+    }).done(function( msg ) {
+        const food = $.parseJSON(msg);
+        $("#quant-reserv-pri").html(food.reservatorio ? food.reservatorio+"g" : "Vazio");
+        $("#quant-tigela").html(food.tigela ? food.tigela+"g" : "Vazia");
+    });
+});
+</script>

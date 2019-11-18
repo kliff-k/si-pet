@@ -10,7 +10,6 @@
                             <input type="text" id="si-pet-id" class="form-control" name="si-pet-id" required autofocus>
                         </div>
                     </div>
-
                     <div class="col-md-6 offset-md-4">
                         <button type="button" class="btn btn-primary" id="activate-id">
                             Ativar
@@ -21,3 +20,24 @@
         </div>
     </div>
 </div>
+<script>
+    $(()=>{
+        $('#activate-id').on('click', () => {
+            const id = $('#si-pet-id').val();
+            if(!id)
+            {
+                alert('É necessário informar um id');
+                return 0;
+            }
+
+            $.ajax({
+                url: "../rest/api/login",
+                method: "POST",
+                data: '{"id": "'+id+'"}',
+                dataType: "json"
+            }).done(function( msg ) {
+                window.location.href = './home';
+            });
+        });
+    });
+</script>

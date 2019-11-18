@@ -12,3 +12,24 @@
         </div>
     </div>
 </div>
+<script>
+    $(()=>{
+        $('#picture-button').on('click', () => {
+            $.ajax({
+                url: "../rest/api/photo",
+                method: "POST"
+            }).done(function( msg ) {
+                alert( msg );
+            });
+        });
+        $('#feed-button').on('click', () => {
+            $.ajax({
+                url: "../rest/api/alimentacao/deploy",
+                method: "POST"
+            }).done(function( msg ) {
+                alert( msg );
+                window.location.reload();
+            });
+        });
+    });
+</script>
