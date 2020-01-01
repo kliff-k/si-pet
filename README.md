@@ -1,8 +1,8 @@
 Smart (Pet) House PWA
 ==============================
 
-A Smart (pet) house para o seu bicho de estimação.
+The smart (pet) house for your little friends.
 
-Projeto de Sistemas de Informação (Computação (Noturno) - UnB - 2019/2)
+Information Systems Project (Computação (Noturno) - UnB - 2019/2)
 
-PWA Construido em PHP. Utilizando API RESTful.
+PWA and RESTful API build with PHP.
